@@ -1,0 +1,88 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  width: 775px;
+  margin: 10px auto;
+}
+
+.textarea {
+  resize: none;
+  width: 840px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #9f44e9ab;
+  border: 1px solid #1a0d66ee;
+  margin: 1px;
+  color: #1c096dee;
+  box-shadow: 1px 1px #000000d8;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
+}
+
+.container {
+  display: flex;
+  width: 840px;
+  flex-wrap: wrap;
+  background-color: #1edbdbab;
+  border-radius: 4px;
+  justify-content: center;
+  padding: 0 5px;
+
+  /* box-shadow: 10px #000000; */
+}
+
+.space {
+  width: 351px;
+}
+
+.shift {
+  width: 104px;
+}
+
+.tab {
+  width: 124px;
+}
+
+.enter {
+  width: 125px;
+}
+
+.buttonOver {
+  cursor: pointer;
+  border: 1px solid #f11b26fd;
+  box-shadow: 1px 1px #f01616d8;
+}
+
+.buttonDown {
+  border-radius: 50%;
+  border: 1px solid #f11b26fd;
+  box-shadow: 1px 1px #f01616d8;
+}
+
+.capsL {
+  position: relative;
+}
+
+.capsL:after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e90878ea;
+}
