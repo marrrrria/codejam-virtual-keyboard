@@ -159,7 +159,6 @@ function ready() {
   keyboard.addEventListener("mouseup", mouseUp);
   keyboard.addEventListener("mouseover", mouseOver);
   keyboard.addEventListener("mouseout", mouseOut);
-  // keyboard.addEventListener("mouseleave", mouseLeave);
 
   window.addEventListener("keyup", keyupOnKeyboard);
   window.addEventListener("keydown", keydownOnKeyboard);
@@ -229,12 +228,6 @@ function mouseOut(e) {
     e.target.classList.remove("buttonOver");
   }
 }
-
-// function mouseLeave(e) {
-//   if (e.target.tagName == "BUTTON") {
-//     e.target.classList.remove("buttonDown");
-//   }
-// }
 
 function keyupOnKeyboard(e) {
   e.preventDefault();
