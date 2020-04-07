@@ -100,6 +100,7 @@ class Button {
     button.setAttribute("location", this.location);
     button.setAttribute("en", this.en);
     button.setAttribute("ru", this.ru);
+
     if (this.shift) {
       button.setAttribute("shift", this.shift);
     }
@@ -143,8 +144,13 @@ document.body.appendChild(main);
 
 const TEXT = document.querySelector(".textarea");
 let isCapsLock = false;
-let LANG = "en";
+let LANG = localStorage.lang ? localStorage.lang : "en";
 let pushedButtons = [];
+
+// localStorage.setItem("lang", LANG);
+keyboard.querySelectorAll(".button").forEach((item) => {
+  item.innerText = item.getAttribute(localStorage.lang);
+});
 
 document.addEventListener("DOMContentLoaded", ready);
 function ready() {
@@ -175,7 +181,9 @@ function clickOnKeyboard(e) {
       (e.target.getAttribute("which") >= 186 &&
         e.target.getAttribute("which") <= 192) ||
       (e.target.getAttribute("which") >= 219 &&
-        e.target.getAttribute("which") <= 222)
+        e.target.getAttribute("which") <= 222) ||
+      (e.target.getAttribute("which") >= 37 &&
+        e.target.getAttribute("which") <= 40)
     ) {
       TEXT.value += e.target.innerText;
     }
@@ -257,6 +265,26 @@ function keyupOnKeyboard(e) {
     keyboard.querySelectorAll(".button").forEach((item) => capsLockOff(item));
   }
 
+  if (e.which >= 37 && e.which <= 40) {
+    switch (e.key) {
+      case "ArrowUp":
+        TEXT.value += "▲";
+        break;
+
+      case "ArrowDown":
+        TEXT.value += "▼";
+        break;
+
+      case "ArrowLeft":
+        TEXT.value += "◄";
+        break;
+
+      case "ArrowRight":
+        TEXT.value += "►";
+        break;
+    }
+  }
+
   if (e.which == 16) {
     keyboard
       .querySelectorAll(".button")
@@ -278,6 +306,9 @@ function keydownOnKeyboard(e) {
     pushedButtons.includes(16)
   ) {
     LANG = LANG === "ru" ? "en" : "ru";
+
+    localStorage.setItem("lang", LANG);
+
     keyboard
       .querySelectorAll(".button")
       .forEach((item) => changeLanguage(item, LANG));
@@ -359,7 +390,7 @@ function changeToShift(item) {
     }
   }
 
-  if (LANG === "ru") {
+  if (LANG === "ru" && pushedButtons.length < 2) {
     if (item.getAttribute("which") >= 65 && item.getAttribute("which") <= 90) {
       item.innerText = item.innerText.toUpperCase();
     }
