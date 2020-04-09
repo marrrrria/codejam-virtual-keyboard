@@ -144,10 +144,15 @@ document.body.appendChild(main);
 
 const TEXT = document.querySelector(".textarea");
 let isCapsLock = false;
-let LANG = localStorage.lang ? localStorage.lang : "en";
+let LANG = "";
+if (!localStorage.lang) {
+  LANG = "en";
+  localStorage.setItem("lang", "en");
+} else {
+  LANG = localStorage.lang;
+}
 let pushedButtons = [];
 
-// localStorage.setItem("lang", LANG);
 keyboard.querySelectorAll(".button").forEach((item) => {
   item.innerText = item.getAttribute(localStorage.lang);
 });
@@ -300,7 +305,7 @@ function keydownOnKeyboard(e) {
   ) {
     LANG = LANG === "ru" ? "en" : "ru";
 
-    localStorage.setItem("lang", LANG);
+    localStorage.lang = LANG;
 
     keyboard
       .querySelectorAll(".button")
