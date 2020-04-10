@@ -430,6 +430,24 @@ const pushedButtons = [];
 keyboard.querySelectorAll('.button').forEach((item) => {
   item.innerText = item.getAttribute(localStorage.lang);
 });
+function changeFromShift(item) {
+  if (LANG === "en") {
+    if (item.getAttribute("which") >= 65 && item.getAttribute("which") <= 90) {
+      item.innerText = item.innerText.toLowerCase();
+    }
+    if (item.getAttribute("shift")) {
+      item.innerText = item.getAttribute("en");
+    }
+  }
+  if (LANG === "ru") {
+    if (item.getAttribute("which") >= 65 && item.getAttribute("which") <= 90) {
+      item.innerText = item.innerText.toLowerCase();
+    }
+    if (item.getAttribute("shift")) {
+      item.innerText = item.getAttribute("ru");
+    }
+  }
+}
 
 function changeFromShift(item) {
   if (LANG === 'en') {
@@ -588,6 +606,12 @@ function mouseOut(e) {
 function keyUpHandler(item, e) {
   if (item.getAttribute('which') === e.which.toString()) {
     item.classList.remove('buttonDown');
+  }
+}
+
+function keyUpHandler(item, e) {
+  if (item.getAttribute("which") === e.which.toString()) {
+    item.classList.remove("buttonDown");
   }
 }
 
